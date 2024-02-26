@@ -1,4 +1,4 @@
-import { Store, getUsersState } from '../types/store.type'
+import { Store, getUsersState, UsersData } from '../types/store.type'
 import { create } from 'zustand'
 
 export const useStore = create<Store>()((set) => ({
@@ -9,7 +9,7 @@ export const useStore = create<Store>()((set) => ({
 export const getUsersStore = create<getUsersState>(set => ({
     getUsers: async () => {
         let res = await fetch('http://localhost:4000/api/v1/users')
-        let post = await res.json()
-        console.log(post)
+        let users = await res.json()
+        return users
     }
 }))
